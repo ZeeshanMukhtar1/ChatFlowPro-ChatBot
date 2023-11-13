@@ -12,6 +12,9 @@ export default function Home() {
     setSelectedChatFace(ChatFaceData[0]);
   }, []);
 
+  const onChatFacePress = (id) => {
+    setSelectedChatFace(ChatFaceData[id - 1]);
+  };
   return (
     <View
       style={{
@@ -81,10 +84,10 @@ export default function Home() {
           renderItem={({ item }) =>
             selectedChatFace.id != item.id && (
               <TouchableOpacity
-                onPress={() => setSelectedChatFace(item)}
                 style={{
                   margin: 15,
                 }}
+                onPress={() => onChatFacePress(item.id)}
               >
                 <Image
                   source={{ uri: item.image }}
