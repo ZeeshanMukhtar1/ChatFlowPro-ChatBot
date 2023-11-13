@@ -110,6 +110,26 @@ export default function Home() {
       >
         Please select the chat Bot to start the conversation
       </Text>
+      <TouchableOpacity
+        style={{
+          marginTop: 30,
+          backgroundColor: selectedChatFace?.primary,
+          padding: 10,
+          borderRadius: 10,
+          width: 300,
+          alignItems: 'center',
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 15,
+            color: '#fff',
+            backgroundColor: selectedChatFace?.primary,
+          }}
+        >
+          Let's Chat
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
