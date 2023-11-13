@@ -2,7 +2,7 @@ import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import ChatFaceData from '../services/chatFaceData';
 import { useState } from 'react';
-
+import { TouchableOpacity } from 'react-native';
 export default function Home() {
   const [chatFaceData, setChatFaceData] = useState([]);
   const [selectedChatFace, setSelectedChatFace] = useState();
@@ -80,7 +80,8 @@ export default function Home() {
           horizontal={true}
           renderItem={({ item }) =>
             selectedChatFace.id != item.id && (
-              <View
+              <TouchableOpacity
+                onPress={() => setSelectedChatFace(item)}
                 style={{
                   margin: 15,
                 }}
@@ -92,12 +93,20 @@ export default function Home() {
                     height: 50,
                   }}
                 />
-              </View>
+              </TouchableOpacity>
             )
           }
         />
-        <Text>Please select the chat Bot to start the conversation</Text>
       </View>
+      <Text
+        style={{
+          marginTop: 10,
+          fontSize: 15,
+          color: '#b0b0b0',
+        }}
+      >
+        Please select the chat Bot to start the conversation
+      </Text>
     </View>
   );
 }
