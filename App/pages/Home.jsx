@@ -65,25 +65,39 @@ export default function Home() {
         How can i help you?{' '}
       </Text>
       {/* flatlist */}
-      <FlatList
-        data={chatFaceData}
-        horizontal={true}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              margin: 13,
-            }}
-          >
-            <Image
-              source={{ uri: item.image }}
-              style={{
-                width: 50,
-                height: 50,
-              }}
-            />
-          </View>
-        )}
-      />
+      <View
+        style={{
+          marginTop: 30,
+          backgroundColor: '#f5f5f5',
+          alignItems: 'center',
+          height: 110,
+          padding: 10,
+          borderRadius: 10,
+        }}
+      >
+        <FlatList
+          data={chatFaceData}
+          horizontal={true}
+          renderItem={({ item }) =>
+            selectedChatFace.id != item.id && (
+              <View
+                style={{
+                  margin: 15,
+                }}
+              >
+                <Image
+                  source={{ uri: item.image }}
+                  style={{
+                    width: 50,
+                    height: 50,
+                  }}
+                />
+              </View>
+            )
+          }
+        />
+        <Text>Please select the chat Bot to start the conversation</Text>
+      </View>
     </View>
   );
 }
