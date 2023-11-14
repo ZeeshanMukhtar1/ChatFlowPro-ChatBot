@@ -9,7 +9,7 @@ import {
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import ChatFaceData from '../services/chatFaceData';
+import ChatFaceData from '../services/bot__info';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 export default function HomeScreen() {

@@ -9,9 +9,9 @@ import {
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useCallback } from 'react';
-import GlobalApi from '../services/globalapi';
+import GlobalApi from '../services/Backend__api.js';
 import { FontAwesome } from '@expo/vector-icons';
-import ChatFaceData from '../services/chatFaceData.js';
+import ChatFaceData from '../services/bot__info.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 CHAT_BOT_FACE =

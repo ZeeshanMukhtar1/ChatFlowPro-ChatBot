@@ -1,26 +1,31 @@
+// Importing necessary modules from React Native
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import ChatScreen from './App/Pages/ChatScreen';
-import HomeScreen from './App/Pages/HomeScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import HomeNavigation from './App/Navigation/HomeNavigation';
 
+// Importing components and navigation
+import Chat from './App/Screens/Chat';
+import Home from './App/Screens/Home';
+import { NavigationContainer } from '@react-navigation/native';
+import Navigation from './App/Navigation/HomeNavigation';
+
+// Define the main App component
 export default function App() {
   return (
+    // Main container for the entire app
     <View style={styles.container}>
-      {/* <ChatScreen/> */}
+      {/* Navigation container to manage app navigation */}
       <NavigationContainer>
-          <HomeNavigation/>
+        {/* Navigate between Home and Chat screens */}
+        <Navigation />
       </NavigationContainer>
-      {/* <HomeScreen/> */}
     </View>
   );
 }
 
+// Styles for the main container
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  
   },
 });
