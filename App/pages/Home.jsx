@@ -3,9 +3,12 @@ import React, { useEffect } from 'react';
 import ChatFaceData from '../services/chatFaceData';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 export default function Home() {
   const [chatFaceData, setChatFaceData] = useState([]);
   const [selectedChatFace, setSelectedChatFace] = useState();
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     setChatFaceData(ChatFaceData);
@@ -111,6 +114,9 @@ export default function Home() {
         Please select the chat Bot to start the conversation
       </Text>
       <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('chat', { selectedFace: selectedChatFace })
+        }
         style={{
           marginTop: 30,
           backgroundColor: selectedChatFace?.primary,
@@ -119,7 +125,6 @@ export default function Home() {
           width: 300,
           alignItems: 'center',
         }}
-        onPress={() => alert('Chat Started')}
       >
         <Text
           style={{
