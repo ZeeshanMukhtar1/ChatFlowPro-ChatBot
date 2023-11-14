@@ -4,8 +4,8 @@ import { View, Text } from 'react-native';
 import React from 'react';
 
 // Import the components for Home and Chat screens
-import HomeScreen from '../Pages/Home';
-import ChatScreen from '../Pages/Chat';
+import HomeScreen from '../Screens/Home';
+import ChatScreen from '../Screens/Chat';
 
 // Creating a stack navigator using createNativeStackNavigator
 const Stack = createNativeStackNavigator();

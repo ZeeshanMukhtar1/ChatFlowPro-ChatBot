@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Chat from './App/Screens/Chat';
 import Home from './App/Screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
-import Navigation from './App/Navigation/HomeNavigation';
+import Navigation from './App/Navigation/Navigation';
 
 // Define the main App component
 export default function App() {
