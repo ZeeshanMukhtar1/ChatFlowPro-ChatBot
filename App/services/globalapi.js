@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const Base_URL = 'http://192.168.10.5:3000/api/bardapi';
+// Update this with your Vercel deployment URL
+const BASE_URL = 'https://nextjsbanckend.vercel.app/api/bardapi';
 
-const getbardapi = (usermsg) => axios.get(Base_URL + '?ques=' + usermsg);
+const getBardApi = (userMsg) => axios.get(`${BASE_URL}?ques=${userMsg}`);
 
-export default getbardapi;
+export default {
+  getBardApi,
+};
