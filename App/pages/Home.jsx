@@ -119,6 +119,7 @@ export default function Home() {
           width: 300,
           alignItems: 'center',
         }}
+        onPress={() => alert('Chat Started')}
       >
         <Text
           style={{
