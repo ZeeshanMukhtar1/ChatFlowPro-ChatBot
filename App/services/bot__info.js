@@ -9,7 +9,7 @@ export default chatFaceData = [
   },
   {
     id: 2,
-    name: 'Bard',
+    name: 'Cody',
     image:
       'https://res.cloudinary.com/dknvsbuyy/image/upload/v1685709886/image_21_2e18bb4a61.png',
     primary: '#E53057',
@@ -17,7 +17,7 @@ export default chatFaceData = [
   },
   {
     id: 3,
-    name: 'GPT',
+    name: 'Winnie ',
     image:
       'https://res.cloudinary.com/dknvsbuyy/image/upload/v1685709886/image_22_409561b953.png',
     primary: '#3B96D2',

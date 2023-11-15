@@ -1,17 +1,27 @@
+//  importing the required dependencies for react native
 import { View, Text, Image } from 'react-native';
+
+// importing the required dependencies for react
 import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
+// importing the required dependencies for gift chat
 import {
   Bubble,
   GiftedChat,
   InputToolbar,
   Send,
 } from 'react-native-gifted-chat';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useCallback } from 'react';
+// importing backend api from services folder
 import GlobalApi from '../services/Backend__api.js';
+
+// importing icons
 import { FontAwesome } from '@expo/vector-icons';
+
+// importing static bot data
 import ChatFaceData from '../services/bot__info.js';
+
+// importing async storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 CHAT_BOT_FACE =
@@ -21,6 +31,7 @@ export default function ChatScreen() {
   const [loading, setLoading] = useState(false);
   const [chatFaceColor, setChatFaceColor] = useState();
 
+  // useEffect hook to initialize the component
   useEffect(() => {
     checkFaceId();
   }, []);
@@ -32,7 +43,10 @@ export default function ChatScreen() {
     setMessages([
       {
         _id: 1,
-        text: 'Hello, I am ' + ChatFaceData[id].name + ', How Can I help you?',
+        text:
+          'Greetings 🤝, I am ' +
+          ChatFaceData[id].name +
+          ', How Can I assist  you today ?',
         createdAt: new Date(),
         user: {
           _id: 2,
