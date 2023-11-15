@@ -1,32 +1,28 @@
-//  importing the required dependencies for react native
+// Importing necessary dependencies for React and React Native
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Image } from 'react-native';
-
-// importing the required dependencies for react
-import React from 'react';
-import { useState, useEffect, useCallback } from 'react';
-
-// importing the required dependencies for gift chat
 import {
   Bubble,
   GiftedChat,
   InputToolbar,
   Send,
 } from 'react-native-gifted-chat';
-// importing backend api from services folder
-import GlobalApi from '../services/Backend__api.js';
-
-// importing icons
 import { FontAwesome } from '@expo/vector-icons';
-
-// importing static bot data
-import ChatFaceData from '../services/bot__info.js';
-
-// importing async storage
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-CHAT_BOT_FACE =
+// Importing backend API from the services folder
+import GlobalApi from '../services/Backend__api.js';
+
+// Importing static bot data
+import ChatFaceData from '../services/bot__info.js';
+
+// Setting a default chat bot face
+let CHAT_BOT_FACE =
   'https://res.cloudinary.com/dknvsbuyy/image/upload/v1685678135/chat_1_c7eda483e3.png';
+
+// Main ChatScreen component
 export default function ChatScreen() {
+  // State variables
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [chatFaceColor, setChatFaceColor] = useState();
@@ -36,10 +32,13 @@ export default function ChatScreen() {
     checkFaceId();
   }, []);
 
+  // Function to check and set the selected chat face based on stored ID
   const checkFaceId = async () => {
     const id = await AsyncStorage.getItem('chatFaceId');
     CHAT_BOT_FACE = id ? ChatFaceData[id].image : ChatFaceData[0].image;
     setChatFaceColor(ChatFaceData[id].primary);
+
+    // Setting the initial greeting message
     setMessages([
       {
         _id: 1,
@@ -57,6 +56,7 @@ export default function ChatScreen() {
     ]);
   };
 
+  // Function to handle the send action
   const onSend = useCallback((messages = []) => {
     setMessages((previousMessages) =>
       GiftedChat.append(previousMessages, messages)
@@ -66,12 +66,17 @@ export default function ChatScreen() {
     }
   }, []);
 
+  // Function to get the response from the backend API
   const getBardResp = (msg) => {
     setLoading(true);
+
+    // Calling the backend API
     GlobalApi.getBardApi(msg).then(
       (resp) => {
         if (resp.data.resp[1].content) {
           setLoading(false);
+
+          // If a valid response is received, append it to the messages
           const chatAIResp = {
             _id: Math.random() * (9999999 - 1),
             text: resp.data.resp[1].content,
@@ -87,6 +92,8 @@ export default function ChatScreen() {
           );
         } else {
           setLoading(false);
+
+          // If no valid response, send a default sorry message
           const chatAIResp = {
             _id: Math.random() * (9999999 - 1),
             text: 'Sorry, I can not help with it',
@@ -106,6 +113,7 @@ export default function ChatScreen() {
     );
   };
 
+  // Function to render chat bubbles with custom styling
   const renderBubble = (props) => {
     return (
       <Bubble
@@ -118,12 +126,10 @@ export default function ChatScreen() {
         }}
         textStyle={{
           right: {
-            // fontSize:20,
             padding: 2,
           },
           left: {
-            color: '#671ddf',
-            // fontSize:20,
+            color: '#000',
             padding: 2,
           },
         }}
@@ -131,14 +137,13 @@ export default function ChatScreen() {
     );
   };
 
+  // Function to render the input toolbar with custom styling
   const renderInputToolbar = (props) => {
-    //Add the extra styles via containerStyle
     return (
       <InputToolbar
         {...props}
         containerStyle={{
           padding: 3,
-
           backgroundColor: '#671ddf',
           color: '#fff',
         }}
@@ -147,6 +152,7 @@ export default function ChatScreen() {
     );
   };
 
+  // Function to render the send button
   const renderSend = (props) => {
     return (
       <Send {...props}>
@@ -161,8 +167,10 @@ export default function ChatScreen() {
       </Send>
     );
   };
+
+  // Return statement with JSX for rendering the chat screen
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+    <View style={styles.container}>
       <GiftedChat
         messages={messages}
         isTyping={loading}
@@ -178,3 +186,11 @@ export default function ChatScreen() {
     </View>
   );
 }
+
+// Styles object
+const styles = {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+};
